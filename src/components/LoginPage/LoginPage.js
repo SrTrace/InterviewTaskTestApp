@@ -9,11 +9,13 @@ const LoginPage = () => {
     const dispatch = useDispatch();
 
     const handlerLogin = (event) => {
+        event.preventDefault();
         dispatch(login(LOGIN,event.target.value));
         console.log(state.login);
     };
 
     const handlerPassword = (event) => {
+        event.preventDefault();
         dispatch(password(PASSWORD,event.target.value));
         console.log(state.password);
     };
@@ -28,7 +30,10 @@ const LoginPage = () => {
                 className="form__input" type="text"
                 onChange={handlerPassword}
             />
-            <button className="form__link">
+
+            <button
+                className="form__link"
+                disabled={state.login === 'developer12' && state.password === "123456" ? false : true}>
                 Login
             </button>
         </form>
