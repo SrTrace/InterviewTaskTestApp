@@ -1,7 +1,9 @@
-import './App.css';
+import React from "react";
 import {useSelector} from "react-redux";
 import LoginPage from "./components/LoginPage/LoginPage";
-import React from "react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import './App.css';
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 function App() {
     const state = useSelector(state=>  state.auth);
@@ -9,8 +11,12 @@ function App() {
     //console.log(state);
   return (
     <div className="App">
-          <h1>Enter</h1>
-        <LoginPage/>
+        <Router>
+            <Routes>
+                <Route path='/profile' element={ <ProfilePage login={state.login}/>}/>
+                <Route path='/' element={<LoginPage/>}/>
+            </Routes>
+        </Router>
     </div>
   );
 }
